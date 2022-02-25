@@ -26,11 +26,8 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="428dp"
-        android:layout_marginBottom="255dp"
-        android:layout_weight="1"
         android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

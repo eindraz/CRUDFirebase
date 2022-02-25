@@ -10,6 +10,9 @@ import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import data_mahasiswa
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -20,11 +23,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //Inisialisasi ID (Button)
+
         logout.setOnClickListener(this)
         save.setOnClickListener(this)
         showdata.setOnClickListener(this)
-        //Mendapatkan Instance Firebase Autentifikasi
         auth = FirebaseAuth.getInstance()
     }
 
@@ -34,10 +36,31 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.getId()) {
             R.id.save -> {
-            // Statement program untuk simpan data
-            } R
-            .id.logout ->
+
+                val getUserID = auth!!.currentUser!!.uid
+                val database = FirebaseDatabase.getInstance()
+                val getNIM: String = nim.getText().toString()
+                val getNama: String = nama.getText().toString()
+                val getJurusan: String = jurusan.getText().toString()
+                val getReference: DatabaseReference
+                getReference = database.reference
+
+                if (isEmpty(getNIM) || isEmpty(getNama) || isEmpty(getJurusan)) {
+                    Toast.makeText(this@MainActivity, "Data tidak boleh ada yang kosong", Toast.LENGTH_SHORT).show()
+                } else {
+                    getReference.child("Admin").child(getUserID).child("Mahasiswa").push()
+                        .setValue(data_mahasiswa(getNIM, getNama, getJurusan))
+                        .addOnCompleteListener(this) {
+                            nim.setText("")
+                            nama.setText("")
+                            jurusan.setText("")
+                            Toast.makeText(this@MainActivity, "Data Tersimpan", Toast.LENGTH_SHORT).show()
+                        }
+                }
+
+            } R.id.logout ->
             // Statement program untuk logout/keluar
+
             AuthUI.getInstance()
                 .signOut(this)
                 .addOnCompleteListener(object : OnCompleteListener<Void> {
