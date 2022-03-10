@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/@Android/CRUDFirebase/app/src/main/res/drawable/line.xml" value="0.1850877192982456" />
         <entry key="..\:/@Android/CRUDFirebase/app/src/main/res/layout/activity_login.xml" value="0.176" />
         <entry key="..\:/@Android/CRUDFirebase/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/@Android/CRUDFirebase/app/src/main/res/layout/activity_my_list_data.xml" value="0.16926406926406926" />
+        <entry key="..\:/@Android/CRUDFirebase/app/src/main/res/layout/view_design.xml" value="0.2" />
       </map>
     </option>
   </component>
